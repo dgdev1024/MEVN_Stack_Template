@@ -4,15 +4,30 @@
 // Imports
 const webpack = require('webpack');
 const path = require('path');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 // Naming and Path Settings
 const entryPoint = path.resolve(__dirname, 'client/main.js');
-const outputFile = 'bundle.js';
+const outputFile = '[name].[chunkhash].js';
 const exportPath = path.resolve(__dirname, 'public');
 
 // Plugins and Environment Flag
-let plugins = [];
 let env = process.env.WEBPACK_ENV || 'development';
+let plugins = [
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: (module) => {
+            return module.context && module.context.indexOf('node_modules') !== -1;
+        }
+    }),
+
+    new htmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'index.html',
+        inject: true,
+        chunksSortMode: 'dependency'
+    })
+];
 
 // Uglify our client's code if we are building in production mode.
 if (env === 'production') {

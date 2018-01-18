@@ -1,15 +1,16 @@
 <template>
-    <div>
-        <h1 id="test">{{ message }}</h1>
+    <div id="app">
+        <ul>
+            <router-link to="/">Home</router-link>
+            <router-link to="/about">About</router-link>
+        </ul>
+        <router-view />
     </div>
 </template>
 
 <script>
     export default {
-        name: 'App',
-        data () {
-            return { message: 'Hello, World!' };
-        }
+        name: 'app'
     };
 </script>
 
