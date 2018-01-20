@@ -8,6 +8,9 @@ First, download and unzip the template, or clone it with the following command:
 ```
 git clone https://github.com/dgdev1024/MEVN_Stack_Template.git
 ```
+If you are starting a new project with this template and want to use version control,
+after cloning this template, be sure to delete the '.git' folder from the project root
+so you can initialize a new git repository.
 
 Next, install the template's dependencies.
 ```
