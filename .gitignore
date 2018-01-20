@@ -14,5 +14,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-# Environment Variables
-.env
+# Environment Variables. Be sure to uncomment these!
+# .env
+# *.env
