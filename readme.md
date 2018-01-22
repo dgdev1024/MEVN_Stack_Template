@@ -1,6 +1,6 @@
 # Vue.JS Full Stack (MEVN Stack) Template
 This is a simple template that you can use to scaffold full stack web 
-applications which use Vue.JS on the frontend and MongoDB (via Mongoose), 
+applications which use Vue.JS, Vue Router, and Vuex on the frontend and MongoDB (via Mongoose), 
 Express, and Node.JS on the backend.
 
 # Installation and Usage
@@ -19,13 +19,15 @@ npm install
 
 Finally, use one or more of the commands below to build and run the template app.
 ```
-npm run client-dev      # Builds the frontend, using Webpack, in development mode.
-npm run client-prod     # Builds the frontend in production mode.
-npm run server-dev      # Runs the backend server in development mode.
-npm run server-prod     # Runs the backend server in production mode.
-npm run dev             # Builds the frontend and runs the backend server in development mode.
-npm run prod            # Builds the frontend and runs the backend server in production mode.
-npm start               # Defaults to the 'dev' instruction. Modify as needed.
+npm run client-dev          # Builds the frontend, using Webpack, in development mode.
+npm run client-dev-watch    # Builds the frontend in development mode, watching for and rebuilding on changes.
+npm run client-prod         # Builds the frontend in production mode.
+npm run server-dev          # Runs the backend server in development mode.
+npm run server-dev-watch    # Runs the backend server in development mode, watching for and restarting changes via Nodemon.
+npm run server-prod         # Runs the backend server in production mode.
+npm run dev                 # Builds the frontend and runs the backend server in development mode.
+npm run prod                # Builds the frontend and runs the backend server in production mode.
+npm start                   # Defaults to the 'dev' instruction. Modify as needed.
 ```
 
 The development mode commands should be used for testing your app, while the production mode

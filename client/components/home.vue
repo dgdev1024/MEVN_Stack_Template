@@ -7,10 +7,8 @@
 <script>
     export default {
         name: 'Home',
-        data () {
-            return {
-                message: 'Hello, World! Welcome to your app!'
-            };
+        computed: {
+            message () { return this.$store.state.message; }
         }
     };
 </script>
