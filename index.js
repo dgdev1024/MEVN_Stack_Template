@@ -33,5 +33,8 @@ mongoose.connect(process.env.DB_URL)
         mongoose.connection.close()
             .then(() => {
                 process.exit(1);
+            })
+            .catch(() => {
+                process.exit(1);
             });
     });

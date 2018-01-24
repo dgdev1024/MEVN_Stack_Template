@@ -2,6 +2,7 @@
 'use strict';
 
 // Imports
+const rm = require('rimraf');
 const webpack = require('webpack');
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,6 +11,11 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const entryPoint = path.resolve(__dirname, 'client/main.js');
 const outputFile = '[name].[chunkhash].js';
 const exportPath = path.resolve(__dirname, 'public');
+
+// Erase the public folder if it already exists.
+rm.sync(exportPath, {
+    glob: false
+});
 
 // Plugins and Environment Flag
 let env = process.env.WEBPACK_ENV || 'development';
@@ -81,11 +87,46 @@ module.exports = {
             {
                 test: /\.vue?/,
                 use: [ 'vue-loader' ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            name (file) { return getAssetPath('images'); }
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            name (file) { return getAssetPath('videos'); }
+                        }
+                    }
+                ]
             }
         ]
     },
     resolve: {
-        alias: { 'vue$': 'vue/dist/vue.esm.js' }
+        alias: { 
+            'vue$': 'vue/dist/vue.esm.js',
+            '@': path.join(__dirname, 'client')
+        }
     },
     plugins
 };
+
+// A function for generating asset paths for Webpack to place our assets
+// when building the frontend.
+function getAssetPath (category) {
+    return process.env.WEBPACK_ENV === 'development' ?
+        `${category}/[name].[ext]` :
+        `${category}/[hash].[ext]`;
+}
