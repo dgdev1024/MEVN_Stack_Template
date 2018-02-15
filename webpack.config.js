@@ -62,7 +62,10 @@ if (env === 'production') {
 
 // Main Configuration
 module.exports = {
-    entry: entryPoint,
+    entry: [
+        'babel-polyfill',
+        entryPoint
+    ],
     output: {
         path: exportPath,
         filename: outputFile
